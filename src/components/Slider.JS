@@ -1,4 +1,4 @@
-const Box = ({ index, tiles}) => {
+const Slider = ({ index, tiles}) => {
 
   // const colors = ['#f4f1de', '#e07a5f', '#3d405b', '#81b29a', '#f2cc8f']
 
@@ -24,4 +24,4 @@ const Box = ({ index, tiles}) => {
 }
 
 
-export default Box;
+export default Slider;
