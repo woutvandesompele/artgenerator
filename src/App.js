@@ -22,7 +22,7 @@ function App() {
   }
 
   // const traingle1 = (x, y, w, h) => {
-  //   // console.log(x, y, x + w, y, x, y + h);
+  //  console.log(x, y, x + w, y, x, y + h);
   //   makeTriangle(x, y, x + w, y, x, y + h)
   // }
 
