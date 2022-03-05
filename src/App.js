@@ -1,25 +1,87 @@
 import './App.css';
-// import Slider from './components/Slider';
-// import { useState } from 'react';
+import Colorpicker from './components/Colorpicker';
+import Slider from './components/Slider';
+import Drawing from './components/Drawing';
+import Drawing2 from './components/Drawing2';
+import Select from './components/Select';
+import { useStore } from "./store";
+
+const saveSvgAsPng = require('save-svg-as-png')
+
+const imageOptions = {
+  scale: 5,
+  encoderOptions: 1,
+  backgroundColor: 'white',
+}
+
+/* ----------
+
+BUITEN APP PLAATSEN WAT NIET MEER VERANDERT
+
+----------- */
 
 function App() {
-  // const [triangles, setTriangles] = useState(new Array(20).fill(false));
+  const size = useStore(state => state.size)
+  const setSize = useStore(state => state.setSize)
+  const color = useStore(state => state.color)
+  const setColor = useStore(state => state.setColor)
+  const switchCircles = useStore(state => state.switchCircles)
+  const setSwitchCircles = useStore(state => state.setSwitchCircles)
+  const switchColors = useStore(state => state.switchColors)
+  const setSwitchColors = useStore(state => state.setSwitchColors)
+  const colorPalette = useStore(state => state.colorPalette)
+  const setColorPalette = useStore(state => state.setColorPalette)
 
-  // function triangle0(svg, x, y, w, h) {
-  //     tri(svg, x, y, x + w, y, x, y + h)
-  // }
+  const downloadArtwork = () => {
+    saveSvgAsPng.saveSvgAsPng(document.getElementById('svg'), 'tiles.png', imageOptions);
+  };
 
-  const triangles = [];
-  const width = 800;
-  const height = 800;
-  const tiles = 8;
-  const w = width / tiles;
-  const h = height / tiles;
-  let colors = ['#f4f1de', '#e07a5f', '#3d405b', '#81b29a', '#f2cc8f']
+  return (
+    <>
+    <div className="App">
+      {/* <button onClick={handleAddBox}>Add</button> */}
+     <br></br>
+     <button onClick={setSwitchCircles}>Toggle artwork</button>
+     <br></br>
+     <br></br>
+     <button onClick={setSwitchColors}>Toggle colors</button>
+      {switchColors ?
+        <Select label="Colorpalette: " value={colorPalette} onValueChange={v => setColorPalette(v)} />
+        :
+        <Colorpicker label="Color: " value={color} onValueChange={v => setColor(v)} />
+      }
+     <br></br>
+     <br></br>
+     <Slider label="Number of Tiles: " value={size} onValueChange={v => setSize(v)} />
+     <br></br>
+     <br></br>
+     <br></br>
+     <br></br>
+      {switchCircles ?
+        <Drawing2 width={800} height={800}/>
+        :
+        <Drawing width={600} height={600} />
+      }
+      <br />
+      <button onClick={downloadArtwork}>Download Image</button>
+    </div>
+    </>
+  );
+}
 
-  function rand(m) {
-      return Math.floor(Math.random() * Math.floor(m))
-  }
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
 
   // const traingle1 = (x, y, w, h) => {
   //  console.log(x, y, x + w, y, x, y + h);
@@ -40,86 +102,8 @@ function App() {
   // console.log(triangles);
   // triangles.push(triangle);
 
-  for (let row = 0; row < tiles; row++) {
-      for (let col = 0; col < tiles; col++) {
-        const triangle = {};
-          const x = col * w
-          const y = row * h
-          const c = colors[rand(colors.length)]
-          const trianglePoints1 = [
-            [x, y],
-            [x + w, y],
-            [x, y + h]
-          ];
-          const trianglePoints2 = [
-            [x + w, y],
-            [x + w, y + h],
-            [x, y]
-          ];
-          const trianglePoints3 = [
-            [x + w, y + h],
-            [x, y + h],
-            [x + w, y]
-          ];
-          const trianglePoints4 = [
-            [x, y],
-            [x + w, y],
-            [x, y + h]
-          ];
-          let r = rand(4)
-          switch (r) {
-            case 0:
-              triangle.points = trianglePoints1;
-              break
-            case 1:
-              triangle.points = trianglePoints2;
-              break
-            case 2:
-              triangle.points = trianglePoints3;
-              break
-            case 3:
-              triangle.points = trianglePoints4;
-              break
-            default:
-              triangle.points = trianglePoints1;
-              break
-            }
-          triangle.color = c;
-          console.log(triangle);
-          triangles.push(triangle);
-          // console.log("for loops");
-      }
-  }
 
-  console.log(triangles);
-
-  return (
-    <div className="App">
-      {/* <button onClick={handleAddBox}>Add</button> */}
-      <svg width={width} height={height}>
-        {
-          triangles.map((triangle, i) => {
-            return <polygon points={
-              (triangle.points).map(point => point.join(',')).join(' ')} 
-              key={i} fill={triangle.color}></polygon>
-          })
-        }
-      </svg>
-    </div>
-  );
-}
-
-export default App;
+/* <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 323.34 323.94"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;}</style></defs><path class="cls-1" d="M537.42,313.1A161.17,161.17,0,0,0,698.69,151.84" transform="translate(-537.42 -151.84)"/><path class="cls-1" d="M860.76,314.51A161.17,161.17,0,0,0,699.5,475.77" transform="translate(-537.42 -151.84)"/></svg> */
 
 
-
-
-
-
-
-
-
-
-
-// eerste keer undefined
-// console.log vs points
+  //<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 324.61 324.61"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:none;stroke:#000;stroke-miterlimit:10;}</style></defs><rect class="cls-1" x="1" y="1" width="322.61" height="322.61"/><path d="M860,153.18V474.79H538.35V153.18H860m1-1H537.35V475.79H861V152.18Z" transform="translate(-536.85 -151.68)"/><path class="cls-2" d="M698.49,152.18v.15a160.9,160.9,0,0,1-160.9,160.9h-.24v-161Z" transform="translate(-536.85 -151.68)"/><path class="cls-2" d="M861,314.5V475.79H699.53v-.39a160.9,160.9,0,0,1,160.9-160.9Z" transform="translate(-536.85 -151.68)"/></svg>

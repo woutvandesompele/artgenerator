@@ -1,27 +1,32 @@
-const Slider = ({ index, tiles}) => {
+import PropTypes from "prop-types";
 
-  // const colors = ['#f4f1de', '#e07a5f', '#3d405b', '#81b29a', '#f2cc8f']
-
-  // function random(m) {
-  //     return Math.floor(Math.random() * Math.floor(m))
-  // }
-
-  // const c = colors[rand(colors.length)]
-
-
-
-
-
-
-  const points = "200,0 200,100 100,0"
-
-
-  return (<polygon
-    points={points}
-    fill="#000000"
-  />
+const Slider = ({ onValueChange, value, max, min, label }) => {
+  return (
+    <label>
+      <span>{label}</span>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        value={value}
+        onChange={(e) => onValueChange(parseInt(e.target.value, 10))}
+      />
+      <span>{value}</span>
+    </label>
   );
+};
+
+Slider.defaultProps = {
+  min: 6,
+  max: 22,
 }
 
+Slider.propTypes = {
+  onValueChange: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  min: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+};
 
 export default Slider;
