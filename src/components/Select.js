@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 const Select = ({ onValueChange, value, label }) => {
   return (
     <label>
-      <span>{label}</span>
-      <select value={value} onChange={(e) => onValueChange(e.target.value)}>
-        <option>Blue</option>
-        <option>Orange</option>
-        <option>Purple</option>
-        <option>Red</option>
+      <span className="input__label">{label}</span>
+      <select className="select" value={value} onChange={(e) => onValueChange(e.target.value)}>
+        <option>Bold</option>
+        <option>Curious</option>
+        <option>Soft</option>
+        <option>Earth</option>
       </select>
-      <span>{value}</span>
     </label>
   );
 };

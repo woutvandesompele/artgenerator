@@ -70,7 +70,7 @@ const Drawing = ({ width, height, color, size }) => {
   console.log(color)
   return (
     <>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 323.34 323.94" width="100" style={svgStyling}>
+      <svg className='svg'  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 323.34 323.94" width="100" style={svgStyling}>
         <path 
           id="cls-1" 
           d="M537.42,313.1A161.17,161.17,0,0,0,698.69,151.84" 

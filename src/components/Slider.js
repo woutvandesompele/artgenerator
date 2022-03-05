@@ -3,15 +3,18 @@ import PropTypes from "prop-types";
 const Slider = ({ onValueChange, value, max, min, label }) => {
   return (
     <label>
-      <span>{label}</span>
+      <span className="input__label">{label}</span>
+      <br></br>
+      <br></br>
       <input
+        className="slider"
         type="range"
         min={min}
         max={max}
         value={value}
         onChange={(e) => onValueChange(parseInt(e.target.value, 10))}
       />
-      <span>{value}</span>
+      <span className="slider__span">{value}</span>
     </label>
   );
 };

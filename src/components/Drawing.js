@@ -10,6 +10,9 @@ const Drawing = ({ width, height}) => {
   const color = useStore(state => state.color);
   const colorPalette = useStore(state => state.colorPalette);
   const switchColors = useStore(state => state.switchColors);
+  const switchBackground = useStore(state => state.switchBackground);
+  const gradient1 = useStore(state => state.gradient1);
+  const gradient2 = useStore(state => state.gradient2);
   // const [polygons, render] = useState({});
   // const [triangles, setTriangles] = useState([]);
   const triangles = [];
@@ -17,10 +20,10 @@ const Drawing = ({ width, height}) => {
   const w = width / tiles;
   const h = height / tiles;
   let c;
-  let colors1 = ['#f4f1de', '#e07a5f', '#3d405b', '#81b29a', '#f2cc8f']
-  let colors2 = ['#f4f1de', '#e07aFF', '#3d405b', '#81b29a', '#12cc8f']
-  let colors3 = ['#BBf1de', '#e07a5f', '#33405b', '#81b29a', '#f2cc8f']
-  let colors4 = ['#f4f1de', '#00885f', '#3d405b', '#00b29a', '#f2BB8f']
+  let colors1 = ['#FFC857', '#e07a5f', '#3d405b', '#81b29a', '#f2cc8f']
+  let colors2 = ['#5463FF', '#FFFFFF', '#FFC300', '#FF1818']
+  let colors3 = ['#fffffc', '#ffc6ff', '#bdb2ff', '#a0c4ff', '#fdffb6']
+  let colors4 = ['#606c38', '#283618', '#fefae0', '#dda15e', '#bc6c25']
   //let c = colors[rand(colors.length)]
 
 
@@ -36,16 +39,16 @@ const Drawing = ({ width, height}) => {
           const y = row * h
           if (switchColors) {
             switch (colorPalette) {
-              case "Blue":
+              case "Curious":
                 c = colors1[rand(colors1.length)]
                 break
-              case "Orange":
+              case "Bold":
                 c = colors2[rand(colors2.length)]
                 break
-              case "Purple":
+              case "Soft":
                 c = colors3[rand(colors3.length)]
                 break
-              case "Red":
+              case "Earth":
                 c = colors4[rand(colors4.length)]
                 break
               default:
@@ -101,8 +104,6 @@ const Drawing = ({ width, height}) => {
       // }
       // render();
 
-
-
       // const handleBoxClick = (index) => {
       //   // make a copy
       //   const tmp = [...triangles];
@@ -112,9 +113,15 @@ const Drawing = ({ width, height}) => {
       //   setTriangles(tmp);
       // }
 
+      // const svgStyle = "background: linear-gradient(to left, #6699ff 0%," + colors1[0] + " 100%)"
+      // console.log(svgStyle);
+
       console.log(triangles);
   return (
-  <svg id='svg' width={width} height={height}>
+    <>
+        {switchBackground ?
+          <>  <svg className='svg' id='svg' width={width} height={height} 
+  style={{background: 'linear-gradient(to bottom, ' + gradient1 + ' 0%,' + gradient2 + ' 100%)'}}>
         {
             triangles.map((triangle, i) => {
             return <polygon points={
@@ -122,7 +129,21 @@ const Drawing = ({ width, height}) => {
                 key={i} fill={triangle.color}></polygon>
             })
         }
-    </svg>);
+    </svg>
+          </>:
+          <>  <svg className='svg' id='svg' width={width} height={height} >
+        {
+            triangles.map((triangle, i) => {
+            return <polygon points={
+                (triangle.points).map(point => point.join(',')).join(' ')} 
+                key={i} fill={triangle.color}></polygon>
+            })
+        }
+    </svg></>
+          
+        }
+    </>
+);
 }
 
 Drawing.defaultProps = {

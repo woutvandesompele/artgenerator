@@ -25,8 +25,14 @@ function App() {
   const setSize = useStore(state => state.setSize)
   const color = useStore(state => state.color)
   const setColor = useStore(state => state.setColor)
+  const gradient1 = useStore(state => state.gradient1)
+  const setGradient1 = useStore(state => state.setGradient1)
+  const gradient2 = useStore(state => state.gradient2)
+  const setGradient2 = useStore(state => state.setGradient2)
   const switchCircles = useStore(state => state.switchCircles)
-  const setSwitchCircles = useStore(state => state.setSwitchCircles)
+  const switchBackground = useStore(state => state.switchBackground)
+  const setSwitchBackground = useStore(state => state.setSwitchBackground)
+  // const setSwitchCircles = useStore(state => state.setSwitchCircles)
   const switchColors = useStore(state => state.switchColors)
   const setSwitchColors = useStore(state => state.setSwitchColors)
   const colorPalette = useStore(state => state.colorPalette)
@@ -35,35 +41,53 @@ function App() {
   const downloadArtwork = () => {
     saveSvgAsPng.saveSvgAsPng(document.getElementById('svg'), 'tiles.png', imageOptions);
   };
+    console.log(gradient1);
+    console.log(gradient2);
 
   return (
     <>
     <div className="App">
-      {/* <button onClick={handleAddBox}>Add</button> */}
-     <br></br>
-     <button onClick={setSwitchCircles}>Toggle artwork</button>
-     <br></br>
-     <br></br>
-     <button onClick={setSwitchColors}>Toggle colors</button>
-      {switchColors ?
-        <Select label="Colorpalette: " value={colorPalette} onValueChange={v => setColorPalette(v)} />
-        :
-        <Colorpicker label="Color: " value={color} onValueChange={v => setColor(v)} />
-      }
-     <br></br>
-     <br></br>
-     <Slider label="Number of Tiles: " value={size} onValueChange={v => setSize(v)} />
-     <br></br>
-     <br></br>
-     <br></br>
-     <br></br>
+     <div className="content">
+     <h1  className="content__title">Truchet Personaliser</h1>
+     <p  className="content__intro">Have you ever wanted to make your own artwork but your artistic skills haven't gotten any better since kindergarten? Than this is your rescue! Make your own customized truchet tile artwork with this fully customizable truchetgenerator. Since it's fully randomized it will also be entirely unique!</p>
+     {/* <button onClick={setSwitchCircles}>Toggle artwork</button> */}
+     <div className="inputs">
+      <div className="inputs__color">
+        {switchColors ?
+          <Select label="Colorpalette: " value={colorPalette} onValueChange={v => setColorPalette(v)} />
+          :
+          <Colorpicker label="Tilecolor: " value={color} onValueChange={v => setColor(v)} />
+        }
+    </div>
+    <p className="inputs__color--label">Colorpalette</p>
+    <div className="container">
+      <label className="switch"><input type="checkbox" onClick={setSwitchColors}/>    <div></div>
+      </label>
+    </div>
+     <Slider label="Number of Rows: " value={size} onValueChange={v => setSize(v)} />
+    <div>
+    <br></br>
+    <p className="inputs__color--label">Background gradient</p>
+    <div className="container2">
+      <label className="switch2"><input type="checkbox" onClick={setSwitchBackground}/>    <div></div>
+      </label>
+      </div>
+        {switchBackground ?
+          <>
+          <Colorpicker value={gradient1} onValueChange={v => setGradient1(v)} />
+          <Colorpicker value={gradient2} onValueChange={v => setGradient2(v)} />
+          </>:
+          <></>
+          
+        }
+      </div>
+     <button className="button-74 download" onClick={downloadArtwork}><i className="fa fa-download"></i> Download Artwork</button></div>
+     </div>
       {switchCircles ?
         <Drawing2 width={800} height={800}/>
         :
-        <Drawing width={600} height={600} />
+        <Drawing width={720} height={720} />
       }
-      <br />
-      <button onClick={downloadArtwork}>Download Image</button>
     </div>
     </>
   );
@@ -75,32 +99,9 @@ export default App;
 
 
 
+//  <button className="button-59" onClick={setSwitchCircles}>Toggle artwork</button>
 
 
-
-
-
-
-
-
-  // const traingle1 = (x, y, w, h) => {
-  //  console.log(x, y, x + w, y, x, y + h);
-  //   makeTriangle(x, y, x + w, y, x, y + h)
-  // }
-
-  // const makeTriangle = (x1, y1, x2, y2, x3, y3) => {
-  //   console.log(x1 + "," + y1, x2 + "," + y2, x3 + "," + y3);
-  //   const points = (x1 + "," + y1, x2 + "," + y2, x3 + "," + y3);
-  //   console.log(points)
-  //   return (<polygon points={points}></polygon>)
-  //   // return (<polygon points={`${x1}`}{`${y1}`}{`${x2}`}{`${y2}`}{`${x3}`}{`${y3}`}
-  //   // return <polygon points="`${x1},${y1} ${x2},${y2} ${x3},${y3}`"></polygon>
-  // }
-
-  // const triangle = makeTriangle();
-  // console.log(triangle);
-  // console.log(triangles);
-  // triangles.push(triangle);
 
 
 /* <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 323.34 323.94"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;}</style></defs><path class="cls-1" d="M537.42,313.1A161.17,161.17,0,0,0,698.69,151.84" transform="translate(-537.42 -151.84)"/><path class="cls-1" d="M860.76,314.51A161.17,161.17,0,0,0,699.5,475.77" transform="translate(-537.42 -151.84)"/></svg> */

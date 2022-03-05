@@ -5,9 +5,306 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fbeee0;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.content__title {
+  margin-top: 6rem;
+  font-size: 3rem;
+  text-align: left;
+}
+
+.content__intro {
+  text-align: left;
+}
+
+.App {
+  display: flex;
+  margin: 0 auto;
+  max-width: 90vw;
+}
+
+
+.content {
+  max-width: 30rem;
+}
+
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: left;
+  margin-left: 5rem;
+}
+
+.svg {
+  margin: auto;
+  margin-top: 3vw;
+}
+
+
+
+/* CSS */
+button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:hover {
+  background-color: #fff;
+}
+
+button:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+.input__label {
+  font-weight: 600;
+}
+
+.container {
+  position: absolute;
+  top: 0; right: 56rem; bottom: 0; left: 0;
+  height: 40px;
+  margin: auto;
+  text-align: center;
+}
+
+/** Switch
+ -------------------------------------*/
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+}
+
+/**
+ * 1. Adjust this to size
+ */
+
+.switch {
+  display: inline-block;
+  font-size: 20px; /* 1 */
+  height: 1em;
+  width: 2em;
+  background: #fbeee0;
+  border: 2px solid #422800;
+  box-shadow: #422800 2px 2px 0 0;
+}
+
+.switch:hover {
+  background: #FFFFFF;
+}
+
+.switch:active {
+  box-shadow: #422800 0px 0px 0 0;
+  transform: translate(1px, 1px);
+}
+
+.switch div {
+  height: 1em;
+  width: 1em;
+  background: #000;
+  -webkit-transition: all 300ms;
+     -moz-transition: all 300ms;
+          transition: all 300ms;
+}
+
+.switch input:checked + div {
+  -webkit-transform: translate3d(100%, 0, 0);
+     -moz-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
+
+.inputs__color {
+  margin-top: 2rem;
+  font-weight: 600;
+}
+
+.inputs__color--label {
+  margin-top: -0.5rem;
+  font-weight: 600;
+}
+
+select {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  display: inline-block;
+  margin-left: 0.7rem;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 2px 30px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+select:hover {
+  background-color: #fff;
+}
+
+.colorpicker {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  display: inline-block;
+  margin-left: 0.7rem;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.colorpicker:hover {
+  background-color: #fff;
+}
+
+.colorpicker:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+
+.slider {
+  -webkit-appearance: none;
+  width: 50%;
+  height: 15px;
+  background: #fbeee0;
+  outline: none;
+  border: 2px solid #000;
+}
+
+
+/* for chrome/safari */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 30px;
+  background: #000000;
+  border: 2px solid #000;
+}
+
+/* for firefox */
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 60px;
+  background: #fbeee0;
+  border: 2px solid #000;
+}
+
+.slider__span {
+  font-weight: 600;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+}
+
+.download {
+  position: absolute;
+  top: 44rem;
+  left: 69.5rem;
+}
+
+.svg {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  box-shadow: #422800 16px 16px 0 0;
+  color: #422800;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+
+
+
+.container2 {
+  position: absolute;
+  top: 22rem; right: 47rem; bottom: 0; left: 0;
+  height: 40px;
+  margin: auto;
+  text-align: center;
+}
+
+/** Switch
+ -------------------------------------*/
+
+.switch2 input {
+  position: absolute;
+  opacity: 0;
+}
+
+/**
+ * 1. Adjust this to size
+ */
+
+.switch2 {
+  display: inline-block;
+  font-size: 20px; /* 1 */
+  height: 1em;
+  width: 2em;
+  background: #fbeee0;
+  border: 2px solid #422800;
+  box-shadow: #422800 2px 2px 0 0;
+}
+
+.switch2:hover {
+  background: #FFFFFF;
+}
+
+.switch2:active {
+  box-shadow: #422800 0px 0px 0 0;
+  transform: translate(1px, 1px);
+}
+
+.switch2 div {
+  height: 1em;
+  width: 1em;
+  background: #000;
+  -webkit-transition: all 300ms;
+     -moz-transition: all 300ms;
+          transition: all 300ms;
+}
+
+.switch2 input:checked + div {
+  -webkit-transform: translate3d(100%, 0, 0);
+     -moz-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
 }
